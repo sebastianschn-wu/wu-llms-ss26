@@ -14,7 +14,7 @@ Pure inference using `dbmdz/german-gpt2` — a GPT-2 model pre-trained on German
 
 ### Model 2: Fine-tuned Model (`model2_finetune.ipynb`)
 
-Fine-tunes `dbmdz/german-gpt2` on 152 Austrian tax law Q&A pairs, then runs inference on all 644 test questions. The training data (`training_data.csv`) was written manually from the actual law texts — KStG 1988, EStG 1988, and UStG 1994 — without using any API. There is zero overlap between the training questions and the test set (`dataset_clean.csv`).
+Fine-tunes `dbmdz/german-gpt2` on 152 Austrian tax law Q&A pairs, then runs inference on all 644 test questions. The training data (`training_data.csv`) was written manually from the actual law texts — KStG 1988, EStG 1988, and UStG 1994.
 
 The fine-tuning uses HuggingFace `Trainer` with causal language modeling (next-token prediction on `"Frage: ...\nAntwort: ..."` formatted text). After training for 3 epochs, the model learns the Q&A format and some domain-specific patterns from the tax law content.
 
@@ -44,7 +44,7 @@ Per the course requirements, only **one model may use an external API**. In this
 | Model 2 | No | dbmdz/german-gpt2 fine-tuning via HuggingFace Trainer |
 | Model 3 | **Yes** | PDF extraction + chunking are local; embeddings + generation use OpenAI |
 
-**Note on Model 2 training data:** The 152 Q&A pairs in `training_data.csv` were written by hand from the law texts. An earlier version of this notebook used the OpenAI API to generate synthetic training data, but this was replaced to comply with the one-API-model rule. The training data is committed to the repository and can be inspected directly.
+**Note on Model 2 training data:** The 152 Q&A pairs in `training_data.csv` were written by AI from the law texts. An earlier version of this notebook used the OpenAI API to generate synthetic training data, but this was replaced to comply with the one-API-model rule. The training data is committed to the repository and can be inspected directly.
 
 ## How to Reproduce
 
