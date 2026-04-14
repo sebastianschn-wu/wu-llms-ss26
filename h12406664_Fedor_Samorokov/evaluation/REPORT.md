@@ -118,6 +118,12 @@ Model 3 (RAG) outperforms both other models across all metrics, as expected — 
 
 Notably, Model 2 scores slightly lower than Model 1 on BLEU-4 (0.0037 vs 0.0048) and ROUGE-L (0.0652 vs 0.0813), despite fine-tuning. Fine-tuning on 152 examples shifted the model's vocabulary toward tax-related terms, but also caused it to hallucinate confident-sounding legal text that diverges from the ground-truth wording — hurting precision-based metrics. Model 2 does improve on ROUGE-1 and BERTScore, suggesting it picks up some topical relevance from fine-tuning even though surface-level precision degrades.
 
+![Metrics Comparison](metrics_comparison.png)
+
+![Answer Length Distribution](answer_lengths.png)
+
+![BERTScore F1 Distribution](bertscore_distribution.png)
+
 ---
 
 ## 5. Error Analysis
@@ -144,3 +150,5 @@ Notably, Model 2 scores slightly lower than Model 1 on BLEU-4 (0.0037 vs 0.0048)
 - Models 1 and 2 share a failure mode: they generate **plausible-sounding German legal text** that is factually incorrect. This is a hallucination problem inherent to small language models without retrieval.
 - Model 3 avoids this by grounding answers in retrieved law text, but is limited by retrieval quality.
 - All models struggle with questions requiring reasoning across multiple law sections (e.g., interaction between KStG and EStG).
+
+![Error Type Distribution](error_analysis.png)
